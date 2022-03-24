@@ -1,0 +1,207 @@
+{
+  "resourceType": "CodeSystem",
+  "url": "http://www.nlm.nih.gov/research/umls/rxnorm",
+  "version": "03072022",
+  "name": "RxNormCurrentPrescribableContent",
+  "title": "RxNorm Current Prescribable Content",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "U.S. National Library of Medicine",
+  "valueSet": "http://www.nlm.nih.gov/research/umls/rxnorm/vs",
+  "description": "RxNorm provides normalized names for clinical drugs and links its names to many of the drug vocabularies commonly used in pharmacy management and drug interaction software",
+  "copyright": "Attribution and Rights for Government Works:  Works produced by the U.S. government are not subject to copyright protection in the United States. Any such works found on National Library of Medicine (NLM) Web sites may be freely used or reproduced without permission in the U.S. Please acknowledge NLM as the source of the information by including the phrase “Courtesy of the U.S. National Library of Medicine” or “Source: U.S. National Library of Medicine.”",
+  "caseSensitive": true,
+  "content": "complete",
+  "property": [
+    {
+      "code": "tty",
+      "type": "string"
+    },
+    {
+      "code": "NDC",
+      "type": "string"
+    },
+    {
+      "code": "ORIG_CODE",
+      "type": "string"
+    },
+    {
+      "code": "ORIG_SOURCE",
+      "type": "string"
+    },
+    {
+      "code": "RXN_ACTIVATED",
+      "type": "string"
+    },
+    {
+      "code": "RXN_AI",
+      "type": "string"
+    },
+    {
+      "code": "RXN_AM",
+      "type": "string"
+    },
+    {
+      "code": "RXN_AVAILABLE_STRENGTH",
+      "type": "string"
+    },
+    {
+      "code": "RXN_BN_CARDINALITY",
+      "type": "string"
+    },
+    {
+      "code": "RXN_BOSS_FROM",
+      "type": "string"
+    },
+    {
+      "code": "RXN_BOSS_STRENGTH_DENOM_UNIT",
+      "type": "string"
+    },
+    {
+      "code": "RXN_BOSS_STRENGTH_DENOM_VALUE",
+      "type": "string"
+    },
+    {
+      "code": "RXN_BOSS_STRENGTH_NUM_UNIT",
+      "type": "string"
+    },
+    {
+      "code": "RXN_BOSS_STRENGTH_NUM_VALUE",
+      "type": "string"
+    },
+    {
+      "code": "RXN_HUMAN_DRUG",
+      "type": "string"
+    },
+    {
+      "code": "RXN_IN_EXPRESSED_FLAG",
+      "type": "string"
+    },
+    {
+      "code": "RXN_OBSOLETED",
+      "type": "string"
+    },
+    {
+      "code": "RXN_QUALITATIVE_DISTINCTION",
+      "type": "string"
+    },
+    {
+      "code": "RXN_QUANTITY",
+      "type": "string"
+    },
+    {
+      "code": "RXN_STRENGTH",
+      "type": "string"
+    },
+    {
+      "code": "RXN_VET_DRUG",
+      "type": "string"
+    },
+    {
+      "code": "RXTERM_FORM",
+      "type": "string"
+    },
+    {
+      "code": "consists_of",
+      "type": "code"
+    },
+    {
+      "code": "constitutes",
+      "type": "code"
+    },
+    {
+      "code": "contained_in",
+      "type": "code"
+    },
+    {
+      "code": "contains",
+      "type": "code"
+    },
+    {
+      "code": "dose_form_of",
+      "type": "code"
+    },
+    {
+      "code": "doseformgroup_of",
+      "type": "code"
+    },
+    {
+      "code": "form_of",
+      "type": "code"
+    },
+    {
+      "code": "has_dose_form",
+      "type": "code"
+    },
+    {
+      "code": "has_doseformgroup",
+      "type": "code"
+    },
+    {
+      "code": "has_form",
+      "type": "code"
+    },
+    {
+      "code": "has_ingredient",
+      "type": "code"
+    },
+    {
+      "code": "has_ingredients",
+      "type": "code"
+    },
+    {
+      "code": "has_part",
+      "type": "code"
+    },
+    {
+      "code": "has_precise_ingredient",
+      "type": "code"
+    },
+    {
+      "code": "has_quantified_form",
+      "type": "code"
+    },
+    {
+      "code": "has_tradename",
+      "type": "code"
+    },
+    {
+      "code": "ingredient_of",
+      "type": "code"
+    },
+    {
+      "code": "ingredients_of",
+      "type": "code"
+    },
+    {
+      "code": "part_of",
+      "type": "code"
+    },
+    {
+      "code": "precise_ingredient_of",
+      "type": "code"
+    },
+    {
+      "code": "quantified_form_of",
+      "type": "code"
+    },
+    {
+      "code": "reformulated_to",
+      "type": "code"
+    },
+    {
+      "code": "reformulation_of",
+      "type": "code"
+    },
+    {
+      "code": "tradename_of",
+      "type": "code"
+    }
+  ],
+  "extension": [
+    {
+      "url": "https://tx.fhir.me/concepts-as-ndjson-gz",
+      "valueUrl": "ipfs://QmU4JuzzVQ85QtFheWGG5dEfBYfjnMrquYMSruEFvCCLek"
+    }
+  ]
+}
