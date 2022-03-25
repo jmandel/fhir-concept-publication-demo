@@ -4,6 +4,7 @@ VERSION=${VERSION:-03072022}
 FILENAME="CodeSystem-${NAME}-${VERSION}.ndjson.gz"
 
 # NDJSON_CID=$(ipfs add -q ${FILENAME})
+# HOSTED_FILE_REF="ipfs://${NDJSON_CID}"
 # echo ".ndjzon CID $NDJSON_CID"
 
 HOSTED_FILE_REF="https://raw.githubusercontent.com/jmandel/fhir-concept-publication-demo/main/${FILENAME}"
