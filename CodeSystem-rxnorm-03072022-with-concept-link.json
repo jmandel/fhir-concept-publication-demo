@@ -201,7 +201,7 @@
   "extension": [
     {
       "url": "https://tx.fhir.me/concepts-as-ndjson-gz",
-      "valueUrl": "ipfs://QmU4JuzzVQ85QtFheWGG5dEfBYfjnMrquYMSruEFvCCLek"
+      "valueUrl": "https://raw.githubusercontent.com/jmandel/fhir-concept-publication-demo/main/CodeSystem-rxnorm-03072022.ndjson.gz"
     }
   ]
 }
