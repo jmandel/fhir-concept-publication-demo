@@ -70,7 +70,7 @@
     { "code": "reformulated_to", "type": "code" },
     { "code": "reformulation_of", "type": "code" },
     { "code": "tradename_of", "type": "code" },
-    { "code": "isa", "type": "code" },
-    { "code": "inverse_isa", "type": "code" }
+    { "code": "isa", "type": "code", "uri": "http://hl7.org/fhir/concept-properties#parent" },
+    { "code": "inverse_isa", "type": "code", "uri": "http://hl7.org/fhir/concept-properties#child" }
   ]
 }
