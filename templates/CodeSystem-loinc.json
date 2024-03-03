@@ -1,0 +1,33 @@
+{
+  "resourceType": "CodeSystem",
+  "url": "http://loinc.org",
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "urn:oid:2.16.840.1.113883.6.1"
+    }
+  ],
+  "name": "LOINC",
+  "title": "LOINC Code System",
+  "status": "active",
+  "experimental": true,
+  "publisher": "Regenstrief Institute, Inc.",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "url",
+          "value": "http://loinc.org"
+        }
+      ]
+    }
+  ],
+  "description": "LOINC is a freely available international standard for tests, measurements, and observations",
+  "copyright": "This material contains content from LOINC (http://loinc.org). LOINC is copyright ©1995-2024, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at http://loinc.org/license. LOINC® is a registered United States trademark of Regenstrief Institute, Inc.",
+  "caseSensitive": false,
+  "valueSet": "http://loinc.org/vs",
+  "hierarchyMeaning": "is-a",
+  "compositional": false,
+  "versionNeeded": false,
+  "content": "complete"
+}
