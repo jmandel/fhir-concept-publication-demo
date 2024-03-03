@@ -12,7 +12,7 @@ jq ". + {extension: [{url: \"https://tx.fhir.me/concepts-as-ndjson-gz\", valueUr
 <(zcat ${FILENAME}| head -n 1) \
 > CodeSystem-${NAME}-${VERSION}-with-concept-link.json 
 
-jq '. + {concepts: $inputs} | del(.extension)' \
+jq '. + {concept: $inputs} | del(.extension)' \
 --slurpfile inputs <(zcat ${FILENAME} | tail -n +2) \
 <(zcat ${FILENAME} | head -n 1) |
 gzip  > CodeSystem-${NAME}-${VERSION}.json.gz
