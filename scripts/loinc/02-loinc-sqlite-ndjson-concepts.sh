@@ -85,13 +85,170 @@ properties AS (select code, json_group_array(json(property)) as properties from 
     WHERE propValue != ''
     UNION
     SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'VersionLastChanged',
+            'valueString', VersionLastChanged
+        ) AS property
+    FROM Loinc
+    WHERE VersionLastChanged != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'CHNG_TYPE',
+            'valueString', CHNG_TYPE
+        ) AS property
+    FROM Loinc
+    WHERE CHNG_TYPE != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'DefinitionDescription',
+            'valueString', DefinitionDescription
+        ) AS property
+    FROM Loinc
+    WHERE DefinitionDescription != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'STATUS',
+            'valueString', STATUS
+        ) AS property
+    FROM Loinc
+    WHERE STATUS != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'CLASSTYPE',
+            'valueString', CLASSTYPE
+        ) AS property
+    FROM Loinc
+    WHERE CLASSTYPE != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'FORMULA',
+            'valueString', FORMULA
+        ) AS property
+    FROM Loinc
+    WHERE FORMULA != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'EXMPL_ANSWERS',
+            'valueString', EXMPL_ANSWERS
+        ) AS property
+    FROM Loinc
+    WHERE EXMPL_ANSWERS != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'SURVEY_QUEST_TEXT',
+            'valueString', SURVEY_QUEST_TEXT
+        ) AS property
+    FROM Loinc
+    WHERE SURVEY_QUEST_TEXT != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'SURVEY_QUEST_SRC',
+            'valueString', SURVEY_QUEST_SRC
+        ) AS property
+    FROM Loinc
+    WHERE SURVEY_QUEST_SRC != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'UNITSREQUIRED',
+            'valueString', UNITSREQUIRED
+        ) AS property
+    FROM Loinc
+    WHERE UNITSREQUIRED != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'ORDER_OBS',
+            'valueString', ORDER_OBS
+        ) AS property
+    FROM Loinc
+    WHERE ORDER_OBS != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'HL7_FIELD_SUBFIELD_ID',
+            'valueString', HL7_FIELD_SUBFIELD_ID
+        ) AS property
+    FROM Loinc
+    WHERE HL7_FIELD_SUBFIELD_ID != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'EXTERNAL_COPYRIGHT_NOTICE',
+            'valueString', EXTERNAL_COPYRIGHT_NOTICE
+        ) AS property
+    FROM Loinc
+    WHERE EXTERNAL_COPYRIGHT_NOTICE != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'EXAMPLE_UNITS',
+            'valueString', EXAMPLE_UNITS
+        ) AS property
+    FROM Loinc
+    WHERE EXAMPLE_UNITS != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'EXAMPLE_UCUM_UNITS',
+            'valueString', EXAMPLE_UCUM_UNITS
+        ) AS property
+    FROM Loinc
+    WHERE EXAMPLE_UCUM_UNITS != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'STATUS_REASON',
+            'valueString', STATUS_REASON
+        ) AS property
+    FROM Loinc
+    WHERE STATUS_REASON != ''
+    UNION
+    SELECT
+        LOINC_NUM AS code,
+        json_object(
+            'code', 'STATUS_TEXT',
+            'valueString', STATUS_TEXT
+        ) AS property
+    FROM Loinc
+    WHERE STATUS_TEXT != ''
+    UNION
+    SELECT
         Loinc.LOINC_NUM AS code,
         json_object(
             'code', CASE
                 WHEN LoincPartLink.PartTypeName = 'SCALE' THEN 'SCALE_TYP'
                 WHEN LoincPartLink.PartTypeName = 'TIME' THEN 'TIME_ASPCT'
                 WHEN LoincPartLink.PartTypeName = 'METHOD' THEN 'METHOD_TYP'
-                ELSE LoincPartLink.PartTypeName
+                ELSE   replace(
+                    LoincPartLink.Property,
+                    rtrim(LoincPartLink.Property, replace(LoincPartLink.Property, '/', '')),
+                    ''
+                )
             END,
             'valueCode', LoincPartLink.PartNumber
         ) AS property
@@ -139,6 +296,24 @@ properties AS (select code, json_group_array(json(property)) as properties from 
         AnswerListId AS code,
         json_object('code', 'ANSWER', 'valueCode', AnswerStringID) AS property
     FROM AnswerList
+    UNION
+    SELECT
+        ParentLoinc AS code,
+        json_object(
+            'code', 'PANEL_MEMBER',
+            'valueCode', Loinc
+        ) AS property
+    FROM PanelsAndForms
+    WHERE ParentLoinc IS NOT NULL AND ParentLoinc != ''
+    UNION
+    SELECT
+        Loinc AS code,
+        json_object(
+            'code', 'PARENT_PANEL',
+            'valueCode', ParentLoinc
+        ) AS property
+    FROM PanelsAndForms
+    WHERE ParentLoinc IS NOT NULL AND ParentLoinc != ''
 ) group by code),
 designations AS (
     SELECT
@@ -204,8 +379,8 @@ jq -c --argjson properties "$PROPERTY_CODES_JSON" '. + {property: $properties, v
 sqlite3 "$OUTPUT_DB" "
     SELECT json_object(
         'code', code,
-        'display', display,
         'designation', json(designations),
+        'display', display,
         'property', json(properties))
     FROM concepts";
 } | gzip > ${FILENAME}

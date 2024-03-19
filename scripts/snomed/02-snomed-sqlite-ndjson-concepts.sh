@@ -17,6 +17,8 @@ FROM (
     SELECT typeId, 'string' AS propertyType FROM ConcreteValue
     UNION
     SELECT 'inactive' AS typeId, 'boolean' AS propertyType
+    UNION
+    SELECT 'parent' as typeId, 'code' as propertyType
 );
 SQL
 )
@@ -59,10 +61,18 @@ property AS (
     SELECT 
         Relationship.sourceId AS code,
         json_object(
+            'code', 'parent',
+            'valueCode', Relationship.destinationId
+        ) AS element
+    FROM Relationship where active=1 and typeId = 116680003
+    UNION ALL
+    SELECT 
+        Relationship.sourceId AS code,
+        json_object(
             'code', Relationship.typeId,
             'valueCode', Relationship.destinationId
         ) AS element
-    FROM Relationship where active=1
+    FROM Relationship where active=1 and typeId != 116680003
     UNION ALL
     SELECT 
         ConcreteValue.sourceId, 
