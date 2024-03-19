@@ -1,6 +1,6 @@
-SOURCE_DB=${SOURCE_DB:-../rxnorm.db}
+SOURCE_DB=${SOURCE_DB:-./rxnorm.db}
 NAME=${NAME:-rxnorm}
-VERSION=${VERSION:-03072022}
+VERSION=${VERSION:-03042024}
 FILENAME="CodeSystem-${NAME}-${VERSION}.ndjson.gz"
 
 echo "Create from $SOURCE_DB: Version=${VERSION} CodeSystem=${NAME}"
@@ -21,10 +21,10 @@ by_attr as (
     select rxcui, json_object('code', atn, 'valueString', atv) attribute
     from rxnsat where sab='RXNORM'),
 by_rela as (
-    select rxcui2 as rxcui, json_object('code', rela, 'valueCode', rxcui1) relation
+select rxcui2 as rxcui, json_object('code', rela, 'valueCode', rxcui1) relation
     from rxnrel where sab='RXNORM' and stype1='CUI'),
 by_prop as (
-    select rxcui, json_object('code', 'tty', 'valueString', designation->>'use.code') as property from by_designation
+    select rxcui, json_object('code', 'tty', 'valueString', designation->>'$.use.code') as property from by_designation
     UNION
     select rxcui, attribute as property from by_attr
     UNION
