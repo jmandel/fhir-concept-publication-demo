@@ -1,0 +1,18 @@
+{
+  "name": "cs-canonicalize",
+  "module": "canonicalize.js",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "fast-json-patch": "^3.1.1",
+    "glob": "^10.3.15",
+    "json-canonicalize": "^1.0.6",
+    "zlib": "^1.0.5"
+  }
+}
